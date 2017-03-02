@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/frenzymadness/FastQ_converter.svg?branch=master)](https://travis-ci.org/frenzymadness/FastQ_converter)
+
 # FastQ_converter
 Simple Python app to convert FastQ files to CSV
 
