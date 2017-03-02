@@ -1,11 +1,11 @@
 from FastQ_converter import convert_to_csv
 from io import StringIO
 
-in1 = StringIO('@idXXX\nsequenceXXXX\n+\nqualityXXXX\n')
-out1 = StringIO('"SeqID","sequence","quality"\n"@idXXX","sequenceXXXX","qualityXXXX"\n')
+in1 = StringIO(u'@idXXX\nsequenceXXXX\n+\nqualityXXXX\n')
+out1 = StringIO(u'"SeqID","sequence","quality"\n"@idXXX","sequenceXXXX","qualityXXXX"\n')
 
-in2 = StringIO('X\nY\n+\nZ')
-out2 = StringIO('"SeqID","sequence","quality"\n')
+in2 = StringIO(u'X\nY\n+\nZ')
+out2 = StringIO(u'"SeqID","sequence","quality"\n')
 
 
 def test_convert_to_csv():

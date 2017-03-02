@@ -8,7 +8,7 @@ def help():
 
 
 def convert_to_csv(in_file, out_file):
-    out_file.write('"SeqID","sequence","quality"\n')
+    out_file.write(u'"SeqID","sequence","quality"\n')
     for line in in_file:
         if not line.startswith('@'):
             continue
@@ -16,7 +16,7 @@ def convert_to_csv(in_file, out_file):
         sequence = next(in_file).strip()
         next(in_file)
         quality = next(in_file).strip()
-        out_file.write('"{}","{}","{}"\n'.format(seq_id, sequence, quality))
+        out_file.write(u'"{}","{}","{}"\n'.format(seq_id, sequence, quality))
 
 
 def main():
