@@ -4,7 +4,7 @@ import sys
 
 
 def help():
-    print('Usage: {} <input_file> <output_file>'.format(sys.argv[0]))
+    print('Usage: {} <input_file> [output_file]'.format(sys.argv[0]))
 
 
 def convert_to_csv(in_file, out_file):
@@ -16,17 +16,24 @@ def convert_to_csv(in_file, out_file):
         sequence = next(in_file).strip()
         next(in_file)
         quality = next(in_file).strip()
-
         out_file.write('"{}","{}","{}"\n'.format(seq_id, sequence, quality))
 
 
 def main():
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 2:
         help()
         sys.exit(1)
     else:
-        with open(sys.argv[1]) as infd:
-            with open(sys.argv[2], 'w') as outfd:
+        in_file = sys.argv[1]
+        if len(sys.argv) >= 3:
+            # If we have it, take name of output from parameters
+            out_file = sys.argv[2]
+        else:
+            # else make it from input file name
+            out_file = '.'.join(in_file.split('.')[:-1]) + '.csv'
+
+        with open(in_file) as infd:
+            with open(out_file, 'w') as outfd:
                 convert_to_csv(infd, outfd)
 
 
