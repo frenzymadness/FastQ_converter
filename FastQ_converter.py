@@ -8,18 +8,16 @@ def help():
 
 
 def convert_to_csv(in_file, out_file):
-    with open(in_file) as infd:
-        with open(out_file, 'w') as outfd:
-            outfd.write('"SeqID","sequence","quality"\n')
-            for line in infd:
-                if not line.startswith('@'):
-                    continue
-                seq_id = line.strip()
-                sequence = next(infd).strip()
-                next(infd)
-                quality = next(infd).strip()
+    out_file.write('"SeqID","sequence","quality"\n')
+    for line in in_file:
+        if not line.startswith('@'):
+            continue
+        seq_id = line.strip()
+        sequence = next(in_file).strip()
+        next(in_file)
+        quality = next(in_file).strip()
 
-                outfd.write('"{}","{}","{}"\n'.format(seq_id, sequence, quality))
+        out_file.write('"{}","{}","{}"\n'.format(seq_id, sequence, quality))
 
 
 def main():
@@ -27,7 +25,9 @@ def main():
         help()
         sys.exit(1)
     else:
-        convert_to_csv(sys.argv[1], sys.argv[2])
+        with open(sys.argv[1]) as infd:
+            with open(sys.argv[2], 'w') as outfd:
+                convert_to_csv(infd, outfd)
 
 
 if __name__ == '__main__':
